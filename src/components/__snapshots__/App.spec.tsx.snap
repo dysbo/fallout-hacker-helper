@@ -2,8 +2,27 @@
 
 exports[`App test should render the app 1`] = `
 <div>
-  <div>
-    Hello, world
+  <div
+    class="text"
+  >
+    Be sure to remove as many duds as possible before you begin.
+  </div>
+  <div
+    class="text"
+  >
+    Enter the words available in a single line, separated by a space.  When finished, press ENTER to submit them.
+  </div>
+  <div
+    class="user-input"
+  >
+    <div>
+      &gt; 
+    </div>
+    <input
+      class="user-input-text"
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;

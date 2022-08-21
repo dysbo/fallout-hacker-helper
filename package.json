@@ -5,18 +5,24 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --env env=production",
+    "clean": "rimraf ./dist",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "start": "webpack serve --config webpack.config.js --env env=development",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
+    "test:component": "jest --testMatch '**/*.{spec,test}.component.{ts,tsx}' --passWithNoTests",
+    "test:watch": "jest --watch --no-coverage",
     "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.10",
@@ -27,6 +33,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.7",
+    "@types/lodash": "^4.14.184",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
@@ -37,7 +44,6 @@
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",

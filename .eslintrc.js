@@ -19,18 +19,27 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended', //should be at the last
   ],
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off'
   },
+  overrides: [
+    {
+      files: ["**/*.spec.ts", "**/*.spec.tsx"],
+      rules: {
+        '@typescript-eslint/ban-ts-comment': 'off',
+        'react/display-name': 'off'
+      }
+    }
+  ]
 };

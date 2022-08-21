@@ -7,12 +7,16 @@ module.exports = {
     '/node_modules/',
     '<rootDir>/src/index.tsx'
   ],
+  coverageReporters: [
+    'clover',
+    'json',
+    'lcov',
+    ['text', { 'skipFull': true }]
+  ],
   coverageThreshold: {
     global: {
       branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100
+      functions: 100
     }
   },
   setupFilesAfterEnv: [
