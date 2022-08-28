@@ -34,7 +34,7 @@ jobs:
       run: npm run build
 
     - name: Upload a Build Artifact
-      if: github.event.pull_request.merged == 'true'
+      if: github.event.pull_request.merged == true
       uses: actions/upload-artifact@v3.1.0
       with:
         # Artifact name
@@ -47,7 +47,7 @@ jobs:
         retention-days: 7
 
     - name: Deploy GitHub Pages site
-      if: github.event.pull_request.merged == 'true'
+      if: github.event.pull_request.merged == true
       uses: actions/deploy-pages@v1.0.10
       with:
         # Should this action only emit build telemetry instead of deploying the build artifact?
