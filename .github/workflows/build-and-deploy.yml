@@ -45,6 +45,7 @@ jobs:
         retention-days: 7
 
     - name: Deploy GitHub Pages site
+      if: github.event.pull_request.merged
       uses: actions/deploy-pages@v1.0.10
       with:
         # Should this action only emit build telemetry instead of deploying the build artifact?
