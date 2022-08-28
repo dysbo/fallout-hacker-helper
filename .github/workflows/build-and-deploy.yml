@@ -22,13 +22,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        npm install
-        npm run build
-        npm test
-    
+    - name: NPM Install
+      run: npm install
+
+    - name: NPM Test
+      run: npm test
+
+    - name: Webpack Build
+      run: npm run build
+
     - name: Upload a Build Artifact
+      if: github.event.pull_request.merged
       uses: actions/upload-artifact@v3.1.0
       with:
         # Artifact name
@@ -39,19 +43,23 @@ jobs:
         if-no-files-found: error
         # Duration after which artifact will expire in days. 0 means using default retention.
         retention-days: 7
-        
-    - name: Deploy GitHub Pages site
-      uses: actions/deploy-pages@v1.0.10
-      with:
-        # Should this action only emit build telemetry instead of deploying the build artifact?
-        #emit_telemetry: # optional, default is false
-        # GitHub token
-        #token: # default is ${{ github.token }}
-        # Time in milliseconds after which to timeout and cancel the deployment (default: 10 minutes)
-        #timeout: # optional, default is 600000
-        # Maximum number of status report errors before cancelling a deployment (default: 10)
-        #error_count: # optional, default is 10
-        # Time in milliseconds between two deployment status report (default: 5 seconds)
-        #reporting_interval: # optional, default is 5000
-        # Name of the artifact to deploy
-        artifact_name: dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v1.0.10
+        with:
+          # Should this action only emit build telemetry instead of deploying the build artifact?
+          #emit_telemetry: # optional, default is false
+          # GitHub token
+          #token: # default is ${{ github.token }}
+          # Time in milliseconds after which to timeout and cancel the deployment (default: 10 minutes)
+          #timeout: # optional, default is 600000
+          # Maximum number of status report errors before cancelling a deployment (default: 10)
+          #error_count: # optional, default is 10
+          # Time in milliseconds between two deployment status report (default: 5 seconds)
+          #reporting_interval: # optional, default is 5000
+          # Name of the artifact to deploy
+          artifact_name: dist
