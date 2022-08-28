@@ -3,7 +3,7 @@
     "npm run format",
     "npm run lint"
   ],
-  "*.{html,css,less,ejs,scss}": [
+  "*.{html,css,less,ejs,scss,md}": [
     "npm run format"
   ]
 }

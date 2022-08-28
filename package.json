@@ -1,13 +1,13 @@
 {
-  "name": "fallout-hacker",
+  "name": "fallout-hacker-helper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --env env=production",
     "clean": "rimraf ./dist",
-    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
+    "format": "prettier --write \"./src/**/*.{ts,tsx,json,css,scss,md}\"",
+    "lint": "eslint --fix \"./src/**/*.{ts,tsx,json}\"",
     "start": "webpack serve --config webpack.config.js --env env=development",
     "test": "jest",
     "test:component": "jest --testMatch '**/*.{spec,test}.component.{ts,tsx}' --passWithNoTests",
