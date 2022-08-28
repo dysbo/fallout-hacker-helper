@@ -1,12 +1,12 @@
 name: NodeJS with Webpack
-permissions:
-  id-token: write
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
@@ -33,8 +33,19 @@ jobs:
     - name: Webpack Build
       run: npm run build
 
+  deploy:
+    permissions:
+      id-token: write
+
+    runs-on: ubuntu-latest
+
+    needs:
+      - build
+
+    if: ${{ github.event.pull_request.merged }}
+
+    steps:
     - name: Upload a Build Artifact
-      if: github.event_name == 'master'
       uses: actions/upload-artifact@v3.1.0
       with:
         # Artifact name
@@ -47,7 +58,6 @@ jobs:
         retention-days: 7
 
     - name: Deploy GitHub Pages site
-      if: github.event_name == 'master'
       uses: actions/deploy-pages@v1.0.10
       with:
         # Should this action only emit build telemetry instead of deploying the build artifact?
